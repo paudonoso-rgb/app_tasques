@@ -1,4 +1,5 @@
 import 'package:app_tasques/colors_app.dart';
+import 'package:app_tasques/components/item_tasca.dart';
 import 'package:flutter/material.dart';
 
 class Pantallatasquespetites extends StatelessWidget {
@@ -7,6 +8,7 @@ class Pantallatasquespetites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorsApp.fondo,
       appBar: AppBar(
         backgroundColor: Colors.purpleAccent,
         title: Text('Tasques Petites',),
@@ -44,8 +46,30 @@ class Pantallatasquespetites extends StatelessWidget {
         ],
       ),
 
-      body: Center(
-        child: Text('Mida petita de pantalla'),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 2,
+            decoration: BoxDecoration(
+              color: ColorsApp.colorPrimari,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 4,
+                ),
+              ],
+              ),
+            ),
+
+          Expanded(
+            child: ListView.builder(
+              itemCount: 30,
+              itemBuilder:(context, index){
+              return ItemTasca(valorText: index.toString(),);
+            }
+            ),
+          ),
+        ],
       ),
       
     );

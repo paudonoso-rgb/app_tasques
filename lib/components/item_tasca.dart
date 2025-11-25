@@ -17,10 +17,10 @@ class ItemTasca extends StatefulWidget {
 
 class _ItemTascaState extends State<ItemTasca> {
 
-  late bool valorCheckbox;
+  late bool valorCheckbox; // variable per emmagatzemar l'estat del checkbox (late per inicialitzar després)
   
 @override
-  void initState() {
+  void initState() { // inicialitzador de l'estat del widget
 
     super.initState();
     valorCheckbox = widget.valorInicialCheckbox;

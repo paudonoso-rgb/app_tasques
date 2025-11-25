@@ -1,4 +1,5 @@
 import 'package:app_tasques/colors_app.dart';
+import 'package:app_tasques/components/dialog_nova_tasca.dart';
 import 'package:app_tasques/components/item_tasca.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class Pantallatasquespetites extends StatelessWidget {
           FloatingActionButton(
             backgroundColor: ColorsApp.colorPrimari,
             onPressed: () {
-              // Acció del botó
+              obreDialogNovaTasca(context);
             },
             child: Icon(Icons.add, color: Colors.red,),
             shape: CircleBorder(side: BorderSide(color: Colors.black, width: 2),),
@@ -72,6 +73,15 @@ class Pantallatasquespetites extends StatelessWidget {
         ],
       ),
       
+    );
+  }
+  void obreDialogNovaTasca(BuildContext context) {
+    showDialog( //showDialog és una funció de Flutter per mostrar diàlegs
+      context: context,
+      builder: (BuildContext context) {
+        return DialogNovaTasca(
+        );
+      },
     );
   }
 }

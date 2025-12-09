@@ -1,41 +1,31 @@
-import 'package:app_tasques/colors_app.dart';
 import 'package:flutter/material.dart';
 
 class BotoDialog extends StatelessWidget {
-  final String textBoton;
-  final Color colorBoton;
-  final Icon iconBoton;
-  final Function()? accioBoton;
-
+  final String text;
+  final Color colorBoto;
+  final Icon iconBtn;
+  final Function()? accioBoto;
 
   const BotoDialog({
     super.key,
-    required this.textBoton,
-    required this.colorBoton,
-    required this.iconBoton,
-    required this.accioBoton,
-
+    required this.text,
+    required this.colorBoto,
+    required this.iconBtn,
+    this.accioBoto,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pop();
-      },
+      onTap: accioBoto,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
         decoration: BoxDecoration(
-          color: colorBoton,
-          borderRadius: BorderRadius.circular(20),
+          color: colorBoto,
+          borderRadius: BorderRadius.circular(28),
         ),
-      
-      
         child: Row(
-          children: [
-            Icon(iconBoton.icon, color: ColorsApp.colorSegonari,),
-             SizedBox(width: 8),
-              Text(textBoton)],
+          children: [Icon(iconBtn.icon), SizedBox(width: 8), Text(text)],
         ),
       ),
     );

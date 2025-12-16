@@ -62,7 +62,7 @@ class _SmalldevicespageState extends State<Smalldevicespage> {
                 itemCount: llistaTasques.length,
 
                 itemBuilder: (context, index) {
-                  return ItemTask(textValue: llistaTasques[index].title,);
+                  return ItemTask(textValue: llistaTasques[index].title, indexTasca: index,);
                 },
               );
              }

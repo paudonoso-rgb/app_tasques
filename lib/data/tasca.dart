@@ -35,5 +35,7 @@ class Tasca extends HiveObject {
   @HiveField(1)
   bool completed;
 
-  Tasca({required this.title, this.completed = false});
+  Tasca({
+    required this.title,
+    this.completed = false,});
 }

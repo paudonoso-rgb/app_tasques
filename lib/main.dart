@@ -17,6 +17,7 @@ Future<void>main() async{
   Hive.registerAdapter(TascaAdapter());
 
   await Hive.openBox<List<dynamic>>(RepositoriTasca.nomBoxTasques);
+  //si tenemos varias box habria que abrir cada una
 
   runApp(const MainApp());
 }

@@ -1,15 +1,19 @@
 import 'package:app_tasks/colors_app.dart';
+import 'package:app_tasks/components/dialog_nova_tasca.dart';
+import 'package:app_tasks/data/repositori_tasca.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ItemTask extends StatefulWidget {
   final bool checked; // Nueva propiedad para el estado del checkbox
   final String textValue;
+  final int indexTasca;
+
   const ItemTask({
     super.key,
     this.checked = false,
-    this.textValue =
-        "", // Valor por defecto es false con el override la pasamos
+    this.textValue = "", // Valor por defecto es false con el override la pasamos
+    required this.indexTasca,
   });
 
   @override
@@ -48,7 +52,10 @@ class _ItemTaskState extends State<ItemTask> {
             backgroundColor: ColorsApp.closeColor,
             borderRadius: BorderRadius.circular(10),
             //Funcion borrar
-            onPressed: (context) {},
+            onPressed: (context) {
+              RepositoriTasca repositoriTasca = RepositoriTasca();
+              repositoriTasca.eliminarTasca(widget.indexTasca);
+            },
           ),
         ],
       ),
@@ -86,6 +93,14 @@ class _ItemTaskState extends State<ItemTask> {
           ],
         ),
       ),
+    );
+  }
+  void obreDialogNovaTasca(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogNovaTasca(textTasca: widget.textValue, indexTasca: widget.indexTasca);
+      },
     );
   }
 }

@@ -6,7 +6,14 @@ import 'package:app_tasks/data/tasca.dart' show Tasca;
 import 'package:flutter/material.dart';
 
 class DialogNovaTasca extends StatelessWidget {
-  const DialogNovaTasca({super.key});
+
+  final String textTasca;
+  final int indexTasca;
+
+  const DialogNovaTasca({
+    super.key,
+    this.textTasca = "",
+    this.indexTasca = -1,});
 
   @override
   Widget build(BuildContext context) {

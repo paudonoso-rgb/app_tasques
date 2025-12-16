@@ -26,5 +26,17 @@ class RepositoriTasca {
 
     await setBox(llistaTasques);
   }
+  Future<void> eliminarTasca(int index) async {
+    final List<dynamic> llistaTasques = getLlistaTasques();
+    llistaTasques.removeAt(index);
 
+    await setBox(llistaTasques);
+  }
+
+  Future<void> actualitzarTasca(int index, Tasca tascaActualitzada) async {
+    final List<dynamic> llistaTasques = getLlistaTasques();
+    llistaTasques[index] = tascaActualitzada;
+
+    await setBox(llistaTasques);
+  }
 }

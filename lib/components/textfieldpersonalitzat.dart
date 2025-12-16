@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 
 //Customizar con los colores que pertoque
 class Textfieldpersonalitzat extends StatelessWidget {
-  const Textfieldpersonalitzat({super.key});
+  final TextEditingController controlerTitol;
+
+  const Textfieldpersonalitzat({
+    super.key,
+    required this.controlerTitol,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+
+      controller: controlerTitol,
+
       //Color del cursor al escribir
       cursorColor: ColorsApp.primaryColor,
       //Tamaño del cursor que parpadea al escribir

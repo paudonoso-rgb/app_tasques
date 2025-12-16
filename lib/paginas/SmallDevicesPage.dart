@@ -1,13 +1,25 @@
 import 'package:app_tasks/colors_app.dart';
 import 'package:app_tasks/components/dialog_nova_tasca.dart';
 import 'package:app_tasks/components/item_task.dart';
+import 'package:app_tasks/data/repositori_tasca.dart';
+import 'package:app_tasks/data/tasca.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
-class Smalldevicespage extends StatelessWidget {
+class Smalldevicespage extends StatefulWidget {
   const Smalldevicespage({super.key});
 
   @override
+  State<Smalldevicespage> createState() => _SmalldevicespageState();
+}
+
+class _SmalldevicespageState extends State<Smalldevicespage> {
+  @override
   Widget build(BuildContext context) {
+
+    RepositoriTasca repositoriTasca = RepositoriTasca();
+
     return Scaffold(
       backgroundColor: ColorsApp.accentColor,
       appBar: AppBar(
@@ -35,12 +47,33 @@ class Smalldevicespage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
+            child: ValueListenableBuilder(
+
+
+              valueListenable: Hive.box<List<dynamic>>(RepositoriTasca.nomBoxTasques).listenable(),
+
+
+
+             builder: (context, Box<List<dynamic>> boxTasques, _){
+
+              final llistaTasques = repositoriTasca.getLlistaTasques();
+
+              return ListView.builder(
+                itemCount: llistaTasques.length,
+
+                itemBuilder: (context, index) {
+                  return ItemTask(textValue: llistaTasques[index].title,);
+                },
+              );
+             }
+             ),
+            
+            /*ListView.builder(
               itemCount: 30,
               itemBuilder: (context, index) {
                 return ItemTask(textValue: index.toString());
               },
-            ),
+            ),*/
           ),
         ],
       ),

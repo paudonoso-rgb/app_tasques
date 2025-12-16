@@ -1,10 +1,23 @@
+import 'package:app_tasks/data/repositori_tasca.dart';
+import 'package:app_tasks/data/tasca.dart';
 import 'package:app_tasks/paginas/BigDevicesPage.dart';
 import 'package:app_tasks/paginas/MidDevicesPage.dart';
 import 'package:app_tasks/paginas/SmallDevicesPage.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+Future<void>main() async{
+
+  //Inizializar Hive
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+  //Registrar el adaptador
+  Hive.registerAdapter(TascaAdapter());
+
+  await Hive.openBox<List<dynamic>>(RepositoriTasca.nomBoxTasques);
+
   runApp(const MainApp());
 }
 

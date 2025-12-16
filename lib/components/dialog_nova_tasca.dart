@@ -1,6 +1,8 @@
 import 'package:app_tasks/colors_app.dart';
 import 'package:app_tasks/components/boto_dialog.dart';
 import 'package:app_tasks/components/textfieldpersonalitzat.dart';
+import 'package:app_tasks/data/repositori_tasca.dart';
+import 'package:app_tasks/data/tasca.dart' show Tasca;
 import 'package:flutter/material.dart';
 
 class DialogNovaTasca extends StatelessWidget {
@@ -8,6 +10,9 @@ class DialogNovaTasca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final TextEditingController controlerTextTasca = TextEditingController();
+
     return AlertDialog(
       //Fondo del dialogo
       backgroundColor: ColorsApp.accentColor,
@@ -30,22 +35,28 @@ class DialogNovaTasca extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Textfieldpersonalitzat(),
+
+            Textfieldpersonalitzat(controlerTitol: controlerTextTasca),
             SizedBox(height: 20),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+
+
                 BotoDialog(
                   text: "Tancar",
                   colorBoto: ColorsApp.closeColor,
                   iconBtn: Icon(Icons.close),
                   accioBoto: () => tancarTasca(context),
                 ),
+
+
                 BotoDialog(
                   text: "Guardar",
                   colorBoto: ColorsApp.greenColor,
                   iconBtn: Icon(Icons.save),
-                  accioBoto: () => guardarTasca(context),
+                  accioBoto: () => guardarTasca(context, controlerTextTasca.text),
                 ),
               ],
             ),
@@ -55,7 +66,15 @@ class DialogNovaTasca extends StatelessWidget {
     );
   }
 
-  void guardarTasca(BuildContext context) {
+  Future<void> guardarTasca(BuildContext context, String text) async {
+
+    final RepositoriTasca repositoriTasca = RepositoriTasca();
+
+    final llista = repositoriTasca.getLlistaTasques();
+    llista.add(Tasca(title: text));
+
+    await repositoriTasca.setBox(llista);
+
     Navigator.of(context).pop();
   }
 

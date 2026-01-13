@@ -44,7 +44,9 @@ class _ItemTaskState extends State<ItemTask> {
             backgroundColor: Colors.blue,
             borderRadius: BorderRadius.circular(10),
             //Funcion editar
-            onPressed: (context) {},
+            onPressed: (context) {
+              obreDialogNovaTasca(context);
+            },
           ),
           //Boton eliminar
           SlidableAction(

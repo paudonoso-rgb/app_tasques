@@ -30,7 +30,7 @@ class DialogNovaTasca extends StatelessWidget {
       ),
 
       title: Text(
-        "Quina nova tasca vols afegir?",
+        indexTasca == -1 ? "Quina nova tasca vols afegir?" : "Edita la tasca",
         style: TextStyle(color: ColorsApp.primaryColor),
       ),
       content: Container(

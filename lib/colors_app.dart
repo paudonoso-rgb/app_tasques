@@ -7,3 +7,8 @@ class ColorsApp {
   static Color greenColor = const Color.fromARGB(255, 11, 219, 17);
   static Color closeColor = const Color.fromARGB(255, 187, 11, 4);
 }
+/*
+Si un atributo es estatico no hace falta instanciar la clase para usarlo
+
+Si no fuera estatico habria qe instanciar la clase (ocupando mas memoria)
+*/
